@@ -1,10 +1,16 @@
 {
-  "name": "loading-overlay",
+  "name": "@mkollers/loading-overlay",
   "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0",
     "@angular/router": "^7.0.0",
     "rxjs": "^6.5.1"
-  }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkollers/angular-loading-animation"
+  },
+  "requiredAngularVersion": ">=7.0.0-rc.0"
 }
