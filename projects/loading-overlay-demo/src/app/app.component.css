@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+@media screen and (min-width: 600px) {
+  :host {
+    max-width: 500px;
+  }
+}
+
+button {
+  margin-top: 8px;
+}

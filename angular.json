@@ -1,0 +1,170 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "loading-overlay": {
+      "root": "projects/loading-overlay",
+      "sourceRoot": "projects/loading-overlay/src",
+      "projectType": "library",
+      "prefix": "kollers",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/loading-overlay/tsconfig.lib.json",
+            "project": "projects/loading-overlay/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/loading-overlay/src/test.ts",
+            "tsConfig": "projects/loading-overlay/tsconfig.spec.json",
+            "karmaConfig": "projects/loading-overlay/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/loading-overlay/tsconfig.lib.json",
+              "projects/loading-overlay/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "loading-overlay-demo": {
+      "root": "projects/loading-overlay-demo/",
+      "sourceRoot": "projects/loading-overlay-demo/src",
+      "projectType": "application",
+      "prefix": "kollers",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/loading-overlay-demo",
+            "index": "projects/loading-overlay-demo/src/index.html",
+            "main": "projects/loading-overlay-demo/src/main.ts",
+            "polyfills": "projects/loading-overlay-demo/src/polyfills.ts",
+            "tsConfig": "projects/loading-overlay-demo/tsconfig.app.json",
+            "assets": [
+              "projects/loading-overlay-demo/src/favicon.ico",
+              "projects/loading-overlay-demo/src/assets"
+            ],
+            "styles": [
+              "projects/loading-overlay-demo/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/loading-overlay-demo/src/environments/environment.ts",
+                  "with": "projects/loading-overlay-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "loading-overlay-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "loading-overlay-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "loading-overlay-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/loading-overlay-demo/src/test.ts",
+            "polyfills": "projects/loading-overlay-demo/src/polyfills.ts",
+            "tsConfig": "projects/loading-overlay-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/loading-overlay-demo/karma.conf.js",
+            "styles": [
+              "projects/loading-overlay-demo/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/loading-overlay-demo/src/favicon.ico",
+              "projects/loading-overlay-demo/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/loading-overlay-demo/tsconfig.app.json",
+              "projects/loading-overlay-demo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "loading-overlay-demo-e2e": {
+      "root": "projects/loading-overlay-demo-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/loading-overlay-demo-e2e/protractor.conf.js",
+            "devServerTarget": "loading-overlay-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "loading-overlay-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/loading-overlay-demo-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "loading-overlay"
+}
